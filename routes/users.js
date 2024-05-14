@@ -5,6 +5,14 @@ const users = [
   {
     name: "chu meu",
     email: "hipepidg@gmail.com"
+  },
+  {
+    name: "bac ho chi minh",
+    email: "hoangquat@gmail.com"
+  },
+  {
+    name: "chi thuy",
+    email: "chype@gmail.com"
   }
 ];
 /* GET users listing. */
@@ -19,14 +27,19 @@ router.get('/', function(req, res, next) {
 });
 
 // add new users
-// router.post('/', (req, res, next) => {
-//   const user = req.body;
-//   users.push(user);
-//   res.render("users", {
-//     title: "User List",
-//     users: user
-//   });
-// })
+router.post('/', (req, res, next) => {
+  const newUser = {
+    name: req.body.name,
+    email: req.body.email
+  };
+
+  users.push(newUser);
+
+  res.render("users", {
+    title: "User List",
+    users: [...users]
+  });
+});
 
 // router.put('/:userid/edit', (req, res, next) => {
 //   const index = users.findIndex(u => u.userid === parseInt(req.params.userid));
